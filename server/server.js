@@ -10,9 +10,6 @@ const cors = require('cors');
 const helpers = require('../helpers');
 const dev = process.env.NODE_ENV === 'development';
 
-// example of requiring a server component
-// const todos = require('./components/todos/todos');
-
 const app = express();
 
 app.use(cors());
@@ -25,9 +22,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static(dev ? helpers.root('client') : helpers.root('dist')));
 app.use(cookieParser());
-
-// example of making the todos api routes available by HTTP request via url_of_server/api/todos
-// app.use('/api/todos', todos);
 
 app.all('*', (req, res, next) => {
     res.sendFile('index.html', {
