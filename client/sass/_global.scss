@@ -6,6 +6,12 @@ body {
     * {
         color: $off_white;
     }
+
+    background: url('/images/wood-background-img.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .margin-center {

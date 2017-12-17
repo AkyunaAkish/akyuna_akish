@@ -37,14 +37,14 @@ export const store = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS
 // Set colors for Material UI to use within it's components
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: 'rgb(40, 44, 52)',
+    primary1Color: 'rgb(22, 22, 22)',
     primary2Color: 'rgb(97, 218, 251)',
     primary3Color: 'rgb(97, 218, 251)',
     accent1Color: 'rgb(97, 218, 251)',
     accent2Color: 'rgb(97, 218, 251)',
     accent3Color: 'rgb(97, 218, 251)',
     alternateTextColor: 'rgb(97, 218, 251)',
-    canvasColor: 'rgb(40, 44, 52)',
+    canvasColor: 'rgb(22, 22, 22)',
     borderColor: 'rgb(97, 218, 251)',
     disabledColor: 'rgb(97, 218, 251)',
     pickerHeaderColor: 'rgb(97, 218, 251)',

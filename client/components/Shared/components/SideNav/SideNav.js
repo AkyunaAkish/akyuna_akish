@@ -5,7 +5,6 @@ import { withRouter, Link } from 'react-router-dom';
 import toggleSideNav from '../../actions/toggleSideNav';
 
 import Drawer from 'material-ui/Drawer';
-import Divider from 'material-ui/Divider';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -48,35 +47,25 @@ class SideNav extends PureComponent {
                     open={ this.props.sideNavOpen }
                     onRequestChange={ () => this.props.toggleSideNav() }>
                 <Menu className='side-nav-menu' style={{ padding: 0, margin: 0, width: $(window).width() }} onChange={ this.handleClick.bind(this) }>
-                    <Divider style={{ marginTop: 0 }} />
-
                     <MenuItem primaryText='Close' 
                               className='menu-item'
                               onClick={ () => this.props.toggleSideNav() }
                               leftIcon={ <CloseIcon style={{ fill: 'rgb(255,255,255)' }} /> } />
 
-                    <Divider />
-
                     <MenuItem primaryText='Portfolio'
                               value={ 0 }
                               className={ 'menu-item' }
                               leftIcon={ <PortfolioIcon style={{ fill: 'rgb(255,255,255)' }} /> } />
-
-                    <Divider />          
                    
                     <MenuItem primaryText='Contact'
                               value={ 1 }
                               className={ 'menu-item' }
                               leftIcon={ <ContactIcon style={{ fill: 'rgb(255,255,255)' }} /> } />
 
-                    <Divider />
-
                      <MenuItem primaryText='Resumé'
                               value={ 2 }
                               className={ 'menu-item' }
                               leftIcon={ <ResumeIcon style={{ fill: 'rgb(255,255,255)' }} /> } />
-
-                    <Divider />
                           
                 </Menu>
             </Drawer>
