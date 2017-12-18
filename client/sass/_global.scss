@@ -16,19 +16,19 @@ body {
 }
 
 .margin-center {
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .inline-block {
-    display: inline-block;
+    display: inline-block !important;
 }
 
 .inline {
-    display: inline;
+    display: inline !important;
 }
 
 .block {
-    display: block;
+    display: block !important;
 }
 
 .text-shadow {
@@ -88,6 +88,10 @@ select:-webkit-autofill:focus {
 
 div[role="menu"] {
     padding: 0px !important;
+}
+
+.fa {
+    color: $blue;
 }
 
 

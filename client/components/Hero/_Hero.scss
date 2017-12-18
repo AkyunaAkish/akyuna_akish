@@ -1,4 +1,125 @@
 // put all styles for a component in a component's container class to make sure you don't accidently style something in another component
 .hero-container {
+    .hero-details-left {
+        position: absolute;
+        left: 0;
+        top: 160px;
+        float: left;
+        margin-left: 100px;
+        
+        h3 {
+            font-size: 30px;
+        }
+       
+        p {
+            font-size: 20px;
+        }
 
+        * {
+            margin: 0;
+        }
+    }
+
+    .hero-details-right {
+        position: absolute;
+        right: 0;
+        top: 130px;
+        float: right;
+        margin-right: 100px;
+
+        i {
+            font-size: 25px;
+        }
+
+        * {
+            margin: 0;
+        }
+    }
+
+    .octo,
+    .octo div {
+        margin: 0 auto;
+        transform-origin: 50% 50%;
+        overflow: hidden;
+        width: 200px;
+        height: 200px;
+    }
+
+    .octo,
+    .octo div {
+        width: 300px;
+        height: 300px;
+    }
+
+    .octo {
+        transform: rotate(45deg);
+    }
+
+    .octo1 {
+        transform: rotate(-45deg);
+    }
+
+    .part {
+        padding: 40px 20px 50px;
+        background: $darkT;
+    }
+
+    @media (max-width: 1260px) {
+        .hero-details-left {
+            h3 {
+                font-size: 25px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+
+    @media (max-width: 1135px) {
+        .hero-details-left {
+            h3 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+
+    @media (max-width: 1030px) {
+        .hero-details-left {
+            display: block;
+            float: none;
+            position: static;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero-details-right {
+            display: block;
+            float: none;
+            position: static;
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 330px) {
+        .octo,
+        .octo div {
+            width: 140px;
+            height: 140px;
+        }
+
+        .octo,
+        .octo div {
+            width: 270px;
+            height: 270px;
+        }
+
+    }
 }

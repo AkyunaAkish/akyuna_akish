@@ -18,6 +18,9 @@ import 'bootstrap-loader';
 
 // load all scss styles
 import './sass/style.scss';
+// load font-awesome icons
+
+import 'font-awesome/css/font-awesome.min.css';
 
 // React router component
 import Router from './Router';
@@ -50,6 +53,9 @@ const muiTheme = getMuiTheme({
     pickerHeaderColor: 'rgb(97, 218, 251)',
     clockCircleColor: 'rgb(97, 218, 251)',
     shadowColor: 'rgb(0, 0, 0)',
+  },
+  button: {
+    textTransform: 'none' 
   }
 });
 
