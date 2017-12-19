@@ -3,22 +3,6 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 
-const styles = {
-    uploadButton: {
-        verticalAlign: 'middle',
-    },
-    uploadInput: {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        width: '100%',
-        opacity: 0,
-    },
-};
-
 class Hero extends PureComponent {
     constructor(props) {
         super(props);
