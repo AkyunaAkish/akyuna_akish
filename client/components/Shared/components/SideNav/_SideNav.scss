@@ -4,6 +4,16 @@
         color: white !important;
         text-decoration: none !important;
         overflow-x: hidden !important;
+
+        &::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        * {
+            &::-webkit-scrollbar {
+                display: none !important;
+            }
+        }
    }
 
    .side-nav-menu {
