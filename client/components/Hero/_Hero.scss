@@ -6,7 +6,6 @@
         top: 160px;
         float: left;
         margin-left: 100px;
-        text-align: center;
         
         h3 {
             font-size: 30px;
@@ -27,7 +26,6 @@
         top: 130px;
         float: right;
         margin-right: 100px;
-        text-align: center;
 
         i {
             font-size: 25px;
@@ -65,6 +63,7 @@
         padding: 40px 20px 50px;
         background: $darkT;
         overflow: hidden;
+        min-width: 100% !important;
     }
 
     @media (max-width: 1260px) {
