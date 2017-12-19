@@ -1,12 +1,14 @@
 // put all styles for a component in a component's container class to make sure you don't accidently style something in another component
 .hero-container {
+    min-width: 100% !important;
+
     .hero-details-left {
         position: absolute;
         left: 0;
         top: 160px;
         float: left;
         margin-left: 100px;
-        
+
         h3 {
             font-size: 30px;
         }
