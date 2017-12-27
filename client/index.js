@@ -1,3 +1,8 @@
+// socket.io config
+import io from 'socket.io-client';
+const socket = io.connect();
+window.___SOCKET___ = socket;
+
 // React + Redux dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';

@@ -61,7 +61,7 @@
 
     .part {
         padding: 40px 20px 50px;
-        background: $darkT;
+        background: transparent;
     }
 
     @media (max-width: 1260px) {
@@ -121,5 +121,12 @@
             height: 270px;
         }
 
+    }
+
+    .fade_line {
+        margin: 25px 0;
+        height: 1px;
+        background: black;
+        background: -webkit-gradient(linear, 0 0, 100% 0, from($grey), to($grey), color-stop(50%, $off_white));
     }
 }

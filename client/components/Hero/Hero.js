@@ -68,6 +68,8 @@ class Hero extends PureComponent {
                     </div>
             
                 </div>
+
+                <div className='fade_line'></div>
             </div>
         );
     }

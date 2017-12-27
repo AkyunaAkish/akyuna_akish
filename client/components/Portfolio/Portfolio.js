@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Hero from '../Hero/Hero';
+import Skills from '../Skills/Skills';
 
 class Portfolio extends PureComponent {
     constructor(props) {
@@ -10,6 +11,7 @@ class Portfolio extends PureComponent {
         return(
             <div className='portfolio-container'>
                <Hero />
+               <Skills />
             </div>
         );
     }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "./server/init.js",
   "scripts": {
-    "start": "NODE_ENV=production node ./server/init.js",
+    "start": "node ./server/init.js",
     "client": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --colors",
     "server": "./node_modules/.bin/nodemon ./server/init.js",
     "build": "./node_modules/.bin/webpack -p"
@@ -22,7 +22,9 @@
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "socket.io": "^2.0.4",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "axios": "^0.17.0",
@@ -58,6 +60,8 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^3.0.2",
+    "react-twitter-widgets": "^1.7.1",
+    "recharts": "^1.0.0-beta.7",
     "redux": "^3.7.0",
     "redux-form": "^7.1.2",
     "redux-promise": "^0.5.3",
