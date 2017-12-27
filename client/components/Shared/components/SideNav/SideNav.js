@@ -45,6 +45,7 @@ class SideNav extends PureComponent {
                     docked={ false }
                     width={ $(window).width() }
                     open={ this.props.sideNavOpen }
+                    style={{ position: 'absolute', zIndex: 9999 }}
                     onRequestChange={ () => this.props.toggleSideNav() }>
                 <Menu className='side-nav-menu' style={{ padding: 0, margin: 0, width: $(window).width() }} onChange={ this.handleClick.bind(this) }>
                     <MenuItem primaryText='Close' 
