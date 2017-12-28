@@ -6,4 +6,8 @@ require('../models/tweet');
 
 const Tweet = mongoose.model('tweet');
 
-module.exports = (tweetConfig) => new Tweet(tweetConfig).save();
+module.exports = (tweetConfig) => {
+    return new Tweet(tweetConfig)
+                    .save()
+                    .then(() => Tweet.find({}).sort('-created_at'));
+};

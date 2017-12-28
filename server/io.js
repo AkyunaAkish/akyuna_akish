@@ -31,7 +31,7 @@ const insertHTCount = require('./queries/insertHTCount');
 const updateHTCount = require('./queries/updateHTCount');
 const insertStartDate = require('./queries/insertStartDate');
 const insertTweet = require('./queries/insertTweet');
-const deleteTweet = require('./queries/deleteTweet');
+const deleteTweets = require('./queries/deleteTweets');
 
 // Recursively go over hashtags and update their count if they exist in the db or insert if they don't
 function updateOrInsertHTs(hts, cb, results = [], errors = []) {
@@ -103,7 +103,7 @@ stream.on('data', (event) => {
                 .then((htCounts) => {
                     findStartDate()
                         .then((startDate) => {
-                            if(!startDate) {
+                            if(startDate === null) {
                                 insertStartDate()
                                     .then((insertStartDateRes) => {
                                         insertTweet({ tweet_id: event.id_str, created_at: Date.now() })
@@ -133,16 +133,18 @@ stream.on('data', (event) => {
                             } else {
                                 findAllTweets()
                                     .then((tweetsRes) => {
-                                        if(tweetsRes.length >= 5) {
-                                            deleteTweet(tweetsRes[tweetsRes.length-1]['_id'])
+                                        if(tweetsRes.length > 4) {
+                                            let idsToDelete = tweetsRes.slice(4, tweetsRes.length).map((tweet) => tweet['_id']);
+
+                                            deleteTweets(idsToDelete)
                                                 .then((deleteTweetRes) => {
                                                     insertTweet({ tweet_id: event.id_str, created_at: Date.now() })
-                                                        .then((insertTweetRes) => {
+                                                        .then((tweetsAfterInsert) => {
                                                             let socketDelivery = {
                                                                 startDate: startDate.startDate,
                                                                 endDate: new Date(),
                                                                 htCounts: htCounts,
-                                                                tweets: tweetsRes
+                                                                tweets: tweetsAfterInsert
                                                             };
 
                                                             io.sockets.emit('skill-tweet', socketDelivery);

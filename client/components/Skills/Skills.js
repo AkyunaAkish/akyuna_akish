@@ -24,7 +24,7 @@ class Skills extends PureComponent {
                 startDate: data.countStartDate,
                 endDate: data.countStartDate,
                 hashtags: [ ...data.htCounts ],
-                tweets: [ ...this.state.tweets, { hashtag: data.newestHT, tweet: data.newestTweet }]
+                tweets: data.tweets || []
             });
         });
 
@@ -41,14 +41,8 @@ class Skills extends PureComponent {
                 hashtags: [ ...data.htCounts ]
             };
 
-            if(data.newestHT && data.newestTweet) {
-                newState.tweets = [
-                    ...this.state.tweets, 
-                    { 
-                        hashtag: data.newestHT, 
-                        tweet: data.newestTweet 
-                    }
-                ];
+            if(data.tweets && data.tweets.length) {
+                newState.tweets = data.tweets;
             }
 
             this.setState(newState);
@@ -56,10 +50,10 @@ class Skills extends PureComponent {
     }
 
     renderTweets() {
-        return <h1>Not now twitter...</h1>
-        // return this.state.tweets.reverse().slice(0,11).map((t, i) => {
-        //     return <Tweet tweetId={ t.tweet } key={ i } />;
-        // });
+        console.log('this.state.tweets', this.state.tweets);
+        return this.state.tweets.map((t, i) => {
+            return <Tweet tweetId={ t.tweet_id } key={ i } />;
+        });
     }
 
     render() {
