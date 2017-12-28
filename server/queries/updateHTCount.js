@@ -1,0 +1,9 @@
+require('dotenv').config();
+
+const mongoose = require('mongoose');
+
+require('../models/htCount');
+
+const HTCount = mongoose.model('htCount');
+
+module.exports = (ht, prevCount) => HTCount.findOne({ ht: ht.ht }).update({ count: ht.count + prevCount });

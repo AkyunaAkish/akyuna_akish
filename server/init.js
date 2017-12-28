@@ -1,6 +1,12 @@
 const app = require('./server.js');
 const debug = require('debug')('akyuna_akish:server');
 const http = require('http');
+
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO_URI);
+mongoose.Promise = global.Promise; // tells mongoose to use promises
+
 const io = require('./io');
 
 const port = normalizePort(process.env.PORT || '3000');

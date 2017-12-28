@@ -4,7 +4,6 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 
 import { Tweet } from 'react-twitter-widgets';
 
-
 class Skills extends PureComponent {
     constructor(props) {
         super(props);
@@ -20,6 +19,7 @@ class Skills extends PureComponent {
     componentDidMount() {
         // if a tweet comes through add it to state
         window.___SOCKET___.on('skill-tweet', (data) => {
+            console.log('data', data);
             this.setState({
                 startDate: data.countStartDate,
                 endDate: data.countStartDate,
@@ -56,9 +56,10 @@ class Skills extends PureComponent {
     }
 
     renderTweets() {
-        return this.state.tweets.map((t, i) => {
-            return <Tweet tweetId={ t.tweet } key={ i } />;
-        });
+        return <h1>Not now twitter...</h1>
+        // return this.state.tweets.reverse().slice(0,11).map((t, i) => {
+        //     return <Tweet tweetId={ t.tweet } key={ i } />;
+        // });
     }
 
     render() {
@@ -67,7 +68,7 @@ class Skills extends PureComponent {
                 <div className='skills-container'>
                     <h2>Skills</h2>
 
-                    <BarChart width={ 1500 }
+                    <BarChart width={ 800 }
                               className='pull-left'
                               height={ 600 }
                               data={ this.state.hashtags }
