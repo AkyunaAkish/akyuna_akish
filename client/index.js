@@ -1,7 +1,19 @@
 // socket.io config
 import io from 'socket.io-client';
+
 const socket = io.connect();
 window.___SOCKET___ = socket;
+
+import isOnline from 'is-online';
+ 
+setInterval(() => {
+  isOnline()
+    .then(online => {
+      if(!online) {
+        window.___SOCKET___ = io.connect();
+      }
+    });
+}, 5000);
 
 // React + Redux dependencies
 import React from 'react';
