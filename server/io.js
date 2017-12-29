@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const io = require('socket.io')();
 const Twitter = require('twitter');
+const moment = require('moment');
 
 const client = new Twitter({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -10,11 +11,12 @@ const client = new Twitter({
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-const skills = [ '#javascript', '#reactjs', '#nodejs', '#expressjs',
-                 '#socket.io', '#redux', '#es6', '#webpackjs', '#gulpjs',
-                 '#REST API', '#sql', '#postgresql', '#mongodb', '#html',
-                 '#redis', '#css', '#scss', '#bootstrap', '#jquery',
-                 '#angularjs', '#stripe API', '#heroku', '#git', '#github'
+const skills = [
+    '#javascript', '#reactjs', '#nodejs', '#expressjs',
+    '#socket.io', '#redux', '#es6', '#webpackjs',
+    '#sql', '#postgresql', '#mongodb', '#html',
+    '#css', '#scss', '#bootstrap',
+    '#heroku', '#git', '#github'
 ];
 
 // Creating a stream which will receive data when any one of my skills is mentioned in a tweet
@@ -71,6 +73,9 @@ function updateOrInsertHTs(hts, cb, results = [], errors = []) {
         });
 }
 
+// var to keep track of most recent hashtag mentioned in a tweet from the stream
+let currentHT;
+
 // this will receive stream data from twitter
 stream.on('data', (event) => {
     // gather current tweet's relevant hashtags and amount of occurences in that tweet
@@ -83,6 +88,7 @@ stream.on('data', (event) => {
 
         if (skills.indexOf(htFormatted) > -1) {
             htCounts[htFormatted] ? htCounts[htFormatted]++ : htCounts[htFormatted] = 1;
+            currentHT = htFormatted;
         }
     });
 
@@ -111,10 +117,11 @@ stream.on('data', (event) => {
                                                 findAllTweets()
                                                     .then((tweetsRes) => {
                                                         let socketDelivery = {
-                                                            startDate: insertStartDateRes.startDate,
-                                                            endDate: new Date(),
+                                                            startDate: moment().format(insertStartDateRes.startDate),
+                                                            endDate: moment().format(new Date()),
                                                             htCounts: htCounts,
-                                                            tweets: tweetsRes
+                                                            tweets: tweetsRes,
+                                                            currentHT
                                                         };
 
                                                         io.sockets.emit('skill-tweet', socketDelivery); 
@@ -141,10 +148,11 @@ stream.on('data', (event) => {
                                                     insertTweet({ tweet_id: event.id_str, created_at: Date.now() })
                                                         .then((tweetsAfterInsert) => {
                                                             let socketDelivery = {
-                                                                startDate: startDate.startDate,
-                                                                endDate: new Date(),
+                                                                startDate: moment(startDate.startDate).format('MM/DD/YYYY'),
+                                                                endDate: moment(new Date()).format('MM/DD/YYYY'),
                                                                 htCounts: htCounts,
-                                                                tweets: tweetsAfterInsert
+                                                                tweets: tweetsAfterInsert,
+                                                                currentHT
                                                             };
 
                                                             io.sockets.emit('skill-tweet', socketDelivery);
@@ -160,10 +168,11 @@ stream.on('data', (event) => {
                                             insertTweet({ tweet_id: event.id_str, created_at: Date.now() })
                                                 .then((insertTweetRes) => {
                                                     let socketDelivery = {
-                                                        startDate: startDate.startDate,
-                                                        endDate: new Date(),
+                                                        startDate: moment(startDate.startDate).format('MM/DD/YYYY'),
+                                                        endDate: moment(new Date()).format('MM/DD/YYYY'),
                                                         htCounts: htCounts,
-                                                        tweets: tweetsRes
+                                                        tweets: tweetsRes,
+                                                        currentHT
                                                     };
 
                                                     io.sockets.emit('skill-tweet', socketDelivery);
@@ -214,8 +223,8 @@ io.on('connection', (socket) => {
                             findAllTweets()
                                 .then((tweetsRes) => {
                                     let socketDelivery = {
-                                        startDate: startDate.startDate,
-                                        endDate: new Date(),
+                                        startDate: moment(startDate.startDate).format('MM/DD/YYYY'),
+                                        endDate: moment(new Date()).format('MM/DD/YYYY'),
                                         htCounts: htCounts,
                                         tweets: tweetsRes
                                     };

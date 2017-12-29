@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import ReactHighcharts from 'react-highcharts'
 
 import { Tweet } from 'react-twitter-widgets';
 
@@ -9,23 +9,93 @@ class Skills extends PureComponent {
         super(props);
         
         this.state = {
-            hashtags: [],
             tweets: [],
-            startDate: new Date(),
-            endDate: new Date()
+            highChartsConfig: {
+                chart: {
+                    type: 'bar',
+                    backgroundColor: 'transparent',
+                    height: 380
+                },
+                title: {
+                    text: 'Real-Time Twitter Mentions of my Skills',
+                    style: { color: 'white' }
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                    categories: [],
+                    labels: {
+                        style: {
+                            fontSize: '11px',
+                            color: 'white'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: null,
+                    },
+                    labels: {
+                        style: {
+                            fontSize: '11px',
+                            color: 'white'
+                        }
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Mentions',
+                    itemStyle: {
+                        color: 'white'
+                    },
+                    data: [],
+                    color: 'rgb(97, 218, 251)'
+                }]
+            }
         };
     }
 
     componentDidMount() {
+        // workaround for socket event callback unmounted component setState issue
+        this.mounted = true;
+
         // if a tweet comes through add it to state
         window.___SOCKET___.on('skill-tweet', (data) => {
-            console.log('data', data);
-            this.setState({
-                startDate: data.countStartDate,
-                endDate: data.countStartDate,
-                hashtags: [ ...data.htCounts ],
-                tweets: data.tweets || []
-            });
+            let highchartConfigClone = { ...this.state.highChartsConfig };
+            highchartConfigClone.xAxis.categories = data.htCounts.categories;
+            highchartConfigClone.series[0].data = data.htCounts.data;
+            
+            let indOfDateBeginning = highchartConfigClone.title.text.indexOf('(');
+            let mainTitleText = indOfDateBeginning > 0 ? highchartConfigClone.title.text.slice(0, indOfDateBeginning)
+                                                       : highchartConfigClone.title.text;
+
+            highchartConfigClone.title.text = mainTitleText + `(${data.startDate} - ${data.endDate})`;
+
+
+            if(this.mounted) {
+                this.setState({
+                    highchartConfig: highchartConfigClone,
+                    tweets: data.tweets || []
+                });
+
+                let chart = this.refs.chart.getChart();
+                chart.redraw();
+
+                $('.chart-container').css({
+                   'background': 'rgba(97, 218, 251, .3)'
+                });
+
+                setTimeout(() => {
+                    $('.chart-container').css({ 
+                        'background': 'transparent'
+                    });
+                }, 750);
+            }
         });
 
         // ask server to send populate twitter data event to get latest
@@ -33,59 +103,71 @@ class Skills extends PureComponent {
         window.___SOCKET___.emit('send-twitter-data');
 
         window.___SOCKET___.on('populate-twitter-data', (data) => {
-            console.log('populate-twitter-data', data);
+            let highchartConfigClone = { ...this.state.highChartsConfig };
+            highchartConfigClone.xAxis.categories = data.htCounts.categories;
+            highchartConfigClone.series[0].data = data.htCounts.data;
+
+            let indOfDateBeginning = highchartConfigClone.title.text.indexOf('(') + 1;
+            let mainTitleText = indOfDateBeginning > 0 ? highchartConfigClone.title.text.slice(0, indOfDateBeginning) 
+                                                       : highchartConfigClone.title.text;
+
+            highchartConfigClone.title.text = mainTitleText + `(${data.startDate} - ${data.endDate})`;
             
+
             let newState = {
-                startDate: data.countStartDate,
-                endDate: data.countStartDate,
-                hashtags: [ ...data.htCounts ]
+                highchartConfig: highchartConfigClone,
+                tweet: data.tweets || []
             };
 
-            if(data.tweets && data.tweets.length) {
-                newState.tweets = data.tweets;
-            }
+            if (this.mounted) {
+                this.setState(newState);
 
-            this.setState(newState);
+                let chart = this.refs.chart.getChart();
+                chart.redraw();
+
+                $('.chart-container').css({ 
+                   'background': 'rgba(97, 218, 251, .3)'
+                });
+
+                setTimeout(() => {
+                    $('.chart-container').css({ 
+                        'background': 'transparent' 
+                    });
+                }, 750);
+            }            
         });
+    }
+
+    componentWillUnmount() {
+        // workaround for socket event callback unmounted component setState issue
+        this.mounted = false;
     }
 
     renderTweets() {
-        console.log('this.state.tweets', this.state.tweets);
-        return this.state.tweets.map((t, i) => {
-            return <Tweet tweetId={ t.tweet_id } key={ i } />;
-        });
+        // if (this.state.tweets.length && this.state.tweets.length < 6) {
+        //     return this.state.tweets.map((t, i) => {
+        //         return <Tweet tweetId={ t.tweet_id } key={ i } />;
+        //     });
+        // } else {
+           return <span></span>;
+        // } 
     }
 
     render() {
-        if(this.state.hashtags.length) {
-            return (
-                <div className='skills-container'>
-                    <h2>Skills</h2>
-
-                    <BarChart width={ 800 }
-                              className='pull-left'
-                              height={ 600 }
-                              data={ this.state.hashtags }
-                              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                        <XAxis dataKey='ht' />
-                        <YAxis dataKey='count' />
-                        <CartesianGrid strokeDasharray='3 3' />
-                        <Tooltip />
-                        <Legend />
-
-                        <Bar dataKey='count' fill='rgb(97, 218, 251)' />
-                    </BarChart>
-
-                    <div style={{ width: '20%' }} className='pull-right'>
-                        { this.renderTweets() }
-                    </div>
+        return (
+            <div className='skills-container'>
+                <div className='chart-container'>
+                    <ReactHighcharts config={ this.state.highChartsConfig }
+                                     ref='chart' />
                 </div>
-            );
-        } else {
-            return <span></span>;
-        }
+                                
+                <div style={{ width: '20%' }} className='pull-right'>
+                    { this.renderTweets() }
+                </div>
+           
+            </div>
+        );
     }
 
 }
-
 export default Skills;
