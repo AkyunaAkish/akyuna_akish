@@ -10,6 +10,8 @@ class Skills extends PureComponent {
         
         this.state = {
             tweets: [],
+            currentHT: '',
+            showCurrentHT: false,
             highChartsConfig: {
                 chart: {
                     type: 'bar',
@@ -66,6 +68,8 @@ class Skills extends PureComponent {
 
         // if a tweet comes through add it to state
         window.___SOCKET___.on('skill-tweet', (data) => {
+            console.log('Data 1', data);
+            
             let highchartConfigClone = { ...this.state.highChartsConfig };
             highchartConfigClone.xAxis.categories = data.htCounts.categories;
             highchartConfigClone.series[0].data = data.htCounts.data;
@@ -80,7 +84,9 @@ class Skills extends PureComponent {
             if(this.mounted) {
                 this.setState({
                     highchartConfig: highchartConfigClone,
-                    tweets: data.tweets || []
+                    tweets: data.tweets || [],
+                    currentHT: data.currentHT,
+                    showCurrentHT: true
                 });
 
                 let chart = this.refs.chart.getChart();
@@ -94,7 +100,11 @@ class Skills extends PureComponent {
                     $('.chart-container').css({ 
                         'background': 'transparent'
                     });
-                }, 750);
+
+                    this.setState({
+                        showCurrentHT: false
+                    });
+                }, 1500);
             }
         });
 
@@ -103,6 +113,8 @@ class Skills extends PureComponent {
         window.___SOCKET___.emit('send-twitter-data');
 
         window.___SOCKET___.on('populate-twitter-data', (data) => {
+            console.log('Data2', data);
+
             let highchartConfigClone = { ...this.state.highChartsConfig };
             highchartConfigClone.xAxis.categories = data.htCounts.categories;
             highchartConfigClone.series[0].data = data.htCounts.data;
@@ -111,7 +123,7 @@ class Skills extends PureComponent {
             let mainTitleText = indOfDateBeginning > 0 ? highchartConfigClone.title.text.slice(0, indOfDateBeginning) 
                                                        : highchartConfigClone.title.text;
 
-            highchartConfigClone.title.text = mainTitleText + `(${data.startDate} - ${data.endDate})`;
+            highchartConfigClone.title.text = mainTitleText + `\n(${data.startDate} - ${data.endDate})`;
             
 
             let newState = {
@@ -157,6 +169,12 @@ class Skills extends PureComponent {
         return (
             <div className='skills-container'>
                 <div className='chart-container'>
+                    <div style={{
+                                 opacity: this.state.showCurrentHT ? 1 : 0
+                            }} 
+                            className='current-ht'>
+                        { this.state.currentHT }
+                    </div>
                     <ReactHighcharts config={ this.state.highChartsConfig }
                                      ref='chart' />
                 </div>
