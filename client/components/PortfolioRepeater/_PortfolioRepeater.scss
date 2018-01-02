@@ -1,0 +1,137 @@
+.portfolio-repeater-container {
+    .portfolio-item {
+        display: inline-block;
+        margin: 10px;
+        overflow: hidden;
+
+        img {
+            height: 200px;
+        }
+
+        width: 350px;
+        height: 370px;
+        max-height: 370px;
+        background-color: $darkT;
+        
+        .portfolio-item-btn-container {
+           display: flex;
+           justify-content: flex-start;
+           
+           .portfolio-item-btn {
+               margin-top: 5px;
+               margin-right: 5px;
+               margin-bottom: 5px;
+           }
+        }
+    }
+
+    @media (min-width: 1910px) {
+        & {
+            width: 1480px;
+        }
+    }
+
+    @media (max-width: 1910px) {
+        & {
+            width: 1480px;
+        }
+    }
+    
+    @media (max-width: 1755px) {
+        & {
+            width: 1110px;
+        }
+    }
+
+    @media (max-width: 1385px) {
+        & {
+            width: 740px;
+        }
+    }
+
+    @media (max-width: 1013px) {
+        & {
+            width: 740px;
+        }
+    }
+
+    @media (max-width: 755px) {
+        & {
+            width: 370px;
+        }
+
+        .portfolio-item {
+            height: auto;
+        }
+    }
+
+    @media (max-width: 700px) {
+        & {
+            margin-top: 330px;
+        }
+    }
+
+    @media (max-width: 580px) {
+        & {
+            margin-top: 360px;
+        }
+    }
+
+    @media (max-width: 496px) {
+        & {
+            margin-top: 420px;
+        }
+    }
+
+    @media (max-width: 475px) {
+        & {
+            margin-top: 490px;
+        }
+    }
+
+    @media (max-width: 325px) {
+        & {
+            margin-top: 510px;
+        }
+    }
+
+    @media (max-width: 385px) {
+        .portfolio-item {
+            width: 300px;
+        }
+
+        & {
+            width: 315px;
+        }
+    }
+
+    @media (max-width: 335px) {
+        .portfolio-item {
+            width: 250px;
+        }
+        
+        & {
+            width: 265px;
+        }
+    }
+
+    @media (max-width: 340px) {
+        .portfolio-item {
+            width: 200px;
+            height: 275px;
+            text-align: center;
+
+            .portfolio-item-btn {
+                margin-bottom: 5px;
+            }
+
+            img {
+                height: 120px;
+            }
+        }
+
+        & {
+            width: 215px;
+        }
+    }
+}

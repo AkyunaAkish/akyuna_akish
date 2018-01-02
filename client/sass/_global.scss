@@ -94,6 +94,14 @@ div[role="menu"] {
     color: $blue;
 }
 
+.blue-text {
+    color: $blue;
+    
+    * {
+        color: $blue;
+    }
+}
+
 
 
 

@@ -67,9 +67,7 @@ class Skills extends PureComponent {
         this.mounted = true;
 
         // if a tweet comes through add it to state
-        window.___SOCKET___.on('skill-tweet', (data) => {
-            console.log('Data 1', data);
-            
+        window.___SOCKET___.on('skill-tweet', (data) => {            
             let highchartConfigClone = { ...this.state.highChartsConfig };
             highchartConfigClone.xAxis.categories = data.htCounts.categories;
             highchartConfigClone.series[0].data = data.htCounts.data;
@@ -113,8 +111,6 @@ class Skills extends PureComponent {
         window.___SOCKET___.emit('send-twitter-data');
 
         window.___SOCKET___.on('populate-twitter-data', (data) => {
-            console.log('Data2', data);
-
             let highchartConfigClone = { ...this.state.highChartsConfig };
             highchartConfigClone.xAxis.categories = data.htCounts.categories;
             highchartConfigClone.series[0].data = data.htCounts.data;

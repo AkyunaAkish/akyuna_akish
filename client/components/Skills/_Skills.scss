@@ -4,6 +4,7 @@
 
     .chart-container {
         width: 100%;
+        margin: 0 auto;
         max-width: 100%;
         min-height: 400px !important;
 
@@ -28,6 +29,42 @@
             -webkit-transition: all 1500ms linear;
             -ms-transition: all 1500ms linear;
             transition: all 1500ms linear;
+        }
+
+        @media (min-width: 1910px) {
+            & {
+                max-width: 1480px;
+            }
+        }
+
+        @media (max-width: 1910px) {
+            & {
+                max-width: 1480px;
+            }
+        }
+
+        @media (max-width: 1755px) {
+            & {
+                max-width: 1110px;
+            }
+        }
+
+        @media (max-width: 1385px) {
+            & {
+                max-width: 740px;
+            }
+        }
+
+        @media (max-width: 1013px) {
+            & {
+                max-width: 740px;
+            }
+        }
+
+        @media (max-width: 755px) {
+            & {
+                max-width: 100%;
+            }
         }
     }
 }
