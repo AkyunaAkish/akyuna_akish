@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI);
 mongoose.Promise = global.Promise; // tells mongoose to use promises
 
-// const io = require('./io');
+const io = require('./io');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
@@ -15,7 +15,7 @@ app.set('port', port);
 const server = http.createServer(app);
 
 let listener = server.listen(port);
-// io.attach(listener);
+io.attach(listener);
 
 server.on('error', onError);
 server.on('listening', onListening);

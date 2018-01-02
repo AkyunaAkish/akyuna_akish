@@ -40,6 +40,14 @@ module.exports = webpackMerge(commonConfig, {
             from: helpers.root('./client/documents'),
             to: helpers.root('dist/documents')
         }]),
+        new CopyWebpackPlugin([{
+            from: helpers.root('./client/humans.txt'),
+            to: helpers.root('dist')
+        }]),
+        new CopyWebpackPlugin([{
+            from: helpers.root('./client/robots.txt'),
+            to: helpers.root('dist')
+        }]),
         new ImageminPlugin({
             disable: process.env.NODE_ENV !== 'production',
             test: /\.(jpe?g|png|gif|svg)$/i,
@@ -47,7 +55,7 @@ module.exports = webpackMerge(commonConfig, {
                 quality: '95-100'
             }
         }),
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.optimize.AggressiveMergingPlugin()
+        // new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.optimize.AggressiveMergingPlugin()
     ]
 });
