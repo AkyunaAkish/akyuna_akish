@@ -73,8 +73,7 @@ class PortfolioRepeater extends PureComponent {
                     <div className='fixed-bottom-container'>
                          <div className='portfolio-item-btn-container'>
                              <RaisedButton className='portfolio-item-btn'
-                                           label={ 'Live Site' }
-                                           label={ item.live.length ? 'Live Site' : 'Privately Hosted' }
+                                           label={ item.live.length ? 'Live Site' : this.props.windowWidth < 390 ? 'Private' : 'Privately Hosted' }
                                            disabled={ item.live.length ? false : true }
                                            href={ item.live }
                                            disabledBackgroundColor={ 'rgb(149,149,149)' }
@@ -82,10 +81,10 @@ class PortfolioRepeater extends PureComponent {
                                            backgroundColor={ 'rgb(52, 56, 64)' }
                                            labelColor={ 'rgb(255,255,255)' }
                                            icon={ <i className='fa fa-cloud'></i> }
-                                           style={{ hover: { cursor: item.live.length ? 'pointer' : 'not-allowed' } }}
                                            target='_blank' />
+
                              <RaisedButton className='portfolio-item-btn'
-                                           label={ item.github.length ? 'Github Repo' : 'Private Repo' }
+                                           label={ item.github.length ? 'Github Repo' : this.props.windowWidth < 390 ? 'Private' : 'Private Repo' }
                                            disabled={ item.github.length ? false : true }
                                            href={ item.github }
                                            disabledBackgroundColor={ 'rgb(149,149,149)' }
@@ -111,4 +110,10 @@ class PortfolioRepeater extends PureComponent {
     }
 }
 
-export default PortfolioRepeater;
+function mapStateToProps(state) {
+    return {
+        windowWidth: state.dimensions.width
+    };
+}
+
+export default connect(mapStateToProps)(PortfolioRepeater);
