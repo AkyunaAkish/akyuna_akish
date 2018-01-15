@@ -35,8 +35,8 @@ import 'bootstrap-loader';
 
 // load all scss styles
 import './sass/style.scss';
-// load font-awesome icons
 
+// load font-awesome icons
 import 'font-awesome/css/font-awesome.min.css';
 
 // React router component
@@ -83,3 +83,5 @@ ReactDOM.render(
       <Router/>
     </MuiThemeProvider>
   </Provider>, document.querySelector('#app'));
+
+
