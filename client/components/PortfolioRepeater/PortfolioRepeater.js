@@ -34,6 +34,14 @@ class PortfolioRepeater extends PureComponent {
                 company: 'Betsol',
                 github: '',
                 img: '/images/portfolio/apdp_web_app/frontPage.png'
+            },       
+            {
+                title: 'Crypto Exchange Pricing Stream',
+                tech: 'ReactJS, Redux, HighCharts, SCSS, Material-UI, NodeJS, Webpack, Coin Cap/Kraken/Poloniex APIs, MongoDB, Mongoose, ExpressJS, Socket.io',
+                live: 'https://cryptocrew.herokuapp.com',
+                company: 'Personal Project',
+                github: 'https://github.com/AkyunaAkish/crypto_crew',
+                img: '/images/portfolio/cryptoStream.png'
             },
             {
                 title: 'GitHub User Search Project',
