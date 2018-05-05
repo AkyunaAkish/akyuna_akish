@@ -1,4 +1,70 @@
 // put all styles for a component in a component's container class to make sure you don't accidently style something in another component
 .skills-container {
-    
+    overflow: hidden;
+
+    .chart-container {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        min-height: 400px !important;
+
+        -webkit-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+
+        .current-ht {
+            position: relative;
+            top: 185px;
+            left: 45%;
+            z-index: 999999999;
+            color: $blue;
+            background: $extra_darkT;
+            border: none;
+            min-width: 80px;
+            max-width: 150px;
+            word-wrap: break-word;
+            text-align: center;
+            font-size: 30px;
+            
+            -webkit-transition: all 1500ms linear;
+            -ms-transition: all 1500ms linear;
+            transition: all 1500ms linear;
+        }
+
+        @media (min-width: 1910px) {
+            & {
+                max-width: 1480px;
+            }
+        }
+
+        @media (max-width: 1910px) {
+            & {
+                max-width: 1480px;
+            }
+        }
+
+        @media (max-width: 1755px) {
+            & {
+                max-width: 1110px;
+            }
+        }
+
+        @media (max-width: 1385px) {
+            & {
+                max-width: 740px;
+            }
+        }
+
+        @media (max-width: 1013px) {
+            & {
+                max-width: 740px;
+            }
+        }
+
+        @media (max-width: 755px) {
+            & {
+                max-width: 100%;
+            }
+        }
+    }
 }

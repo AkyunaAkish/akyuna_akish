@@ -1,7 +1,19 @@
 // socket.io config
 import io from 'socket.io-client';
+
 const socket = io.connect();
 window.___SOCKET___ = socket;
+
+import isOnline from 'is-online';
+ 
+setInterval(() => {
+  isOnline()
+    .then(online => {
+      if(!online) {
+        window.___SOCKET___ = io.connect();
+      }
+    });
+}, 5000);
 
 // React + Redux dependencies
 import React from 'react';
@@ -23,8 +35,8 @@ import 'bootstrap-loader';
 
 // load all scss styles
 import './sass/style.scss';
-// load font-awesome icons
 
+// load font-awesome icons
 import 'font-awesome/css/font-awesome.min.css';
 
 // React router component
@@ -71,3 +83,5 @@ ReactDOM.render(
       <Router/>
     </MuiThemeProvider>
   </Provider>, document.querySelector('#app'));
+
+

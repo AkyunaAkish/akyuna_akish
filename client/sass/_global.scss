@@ -94,6 +94,43 @@ div[role="menu"] {
     color: $blue;
 }
 
+.blue-text {
+    color: $blue;
+    
+    * {
+        color: $blue;
+    }
+}
+
+.fixed-bottom-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.form-input {
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+         -webkit-box-shadow: 0 0 0 30px $extra_dark inset !important;
+         -webkit-text-fill-color: rgb(255,255,255) !important;
+         border: none !important;
+    }
+
+    * {
+          &:-webkit-autofill,
+          &:-webkit-autofill:hover,
+          &:-webkit-autofill:focus,
+          &:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px $extra_dark inset !important;
+              -webkit-text-fill-color: rgb(255,255,255) !important;
+              border: none !important;
+          }
+    }
+}
+
 
 
 

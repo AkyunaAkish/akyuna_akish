@@ -29,7 +29,7 @@ class Hero extends PureComponent {
 
                     <div className='hero-details-left'>
                         <h3>Full Stack Web Developer</h3>
-                        <p>Mountain View, CA</p>
+                        <p>Boulder, CO</p>
                     </div>
 
                     <div className='hero-details-right'>

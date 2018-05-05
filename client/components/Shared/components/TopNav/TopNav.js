@@ -8,7 +8,9 @@ import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import PortfolioIcon from 'material-ui/svg-icons/action/important-devices';
 import ResumeIcon from 'material-ui/svg-icons/content/content-paste';
 import ContactIcon from 'material-ui/svg-icons/communication/chat-bubble-outline';
+import Snackbar from 'material-ui/Snackbar';
 
+import toggleSnackbar from '../../actions/toggleSnackbar';
 import toggleSideNav from '../../actions/toggleSideNav';
 
 import AppBar from 'material-ui/AppBar';
@@ -22,20 +24,28 @@ class TopNav extends PureComponent {
         };
     }
 
-     componentDidMount() {
+    updateCurrentTab() {
         switch (this.props.history.location.pathname) {
-            case '/':                
+            case '/':
                 this.setState({
                     currentTab: 0
                 });
-            break;
+                break;
 
-            case '/contact':                
+            case '/contact':
                 this.setState({
                     currentTab: 1
                 });
-            break;
+                break;
         }
+    }
+    
+    componentDidMount() {
+        this.updateCurrentTab();
+
+        this.props.history.listen(() => {
+            this.updateCurrentTab();
+        });
     }
 
     handleChange(tab) {
@@ -89,6 +99,12 @@ class TopNav extends PureComponent {
                                 <Tab label='Resumé' icon={ <ResumeIcon /> } value={ 2 } style={ tabStyle } />
                             </Tabs>   
                         ]} />
+
+                <Snackbar open={ this.props.snackBarOpen }
+                          message={ this.props.snackBarMessage }
+                          bodyStyle={{ background: 'rgb(33, 35, 43)' }}
+                          autoHideDuration={ 4000 }
+                          onRequestClose={ () => this.props.toggleSnackbar(false, '') }/>
             </div>
         );
     }
@@ -96,8 +112,10 @@ class TopNav extends PureComponent {
 
 function mapStateToProps(state) {
     return {
-        windowWidth: state.dimensions.width
+        windowWidth: state.dimensions.width,
+        snackBarMessage: state.topNav.snackBarMessage,
+        snackBarOpen: state.topNav.snackBarOpen
     };
 }
 
-export default withRouter(connect(mapStateToProps, { toggleSideNav })(TopNav));
+export default withRouter(connect(mapStateToProps, { toggleSideNav, toggleSnackbar })(TopNav));
