@@ -54,7 +54,7 @@ class PortfolioRepeater extends PureComponent {
             {
                 title: 'Portfolio Project',
                 tech: 'ReactJS, Redux, SCSS, Material-UI, NodeJS, ExpressJS, Webpack, Twitter API, Mailgun-js, Socket.io, MongoDB, Mongoose, Heroku',
-                live: 'http://akyunaakish.com',
+                live: 'http://akyuna.com',
                 company: 'Personal Project',
                 github: 'https://github.com/AkyunaAkish/akyuna_akish',
                 img: '/images/portfolio_project.png'
