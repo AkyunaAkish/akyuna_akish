@@ -58,15 +58,7 @@ class PortfolioRepeater extends PureComponent {
                 company: 'Personal Project',
                 github: 'https://github.com/AkyunaAkish/akyuna_akish',
                 img: '/images/portfolio_project.png'
-            }, 
-            {
-                title: 'Full Stack CRUD Application',
-                github: 'https://github.com/AkyunaAkish/react-redux-blog-application',
-                tech: 'ReactJS, Redux, SCSS, NodeJS, ExpressJS, Webpack, PostgreSQL, Heroku',
-                live: 'https://writings-on-the-wall.herokuapp.com/',
-                company: 'Personal Project',
-                img: '/images/portfolio/writings_on_the_wall.png'
-            }
+            },
         ];
 
         return portfolio.map((item, ind) => {
