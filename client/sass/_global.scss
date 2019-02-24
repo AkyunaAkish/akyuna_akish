@@ -64,9 +64,9 @@ select:-webkit-autofill:focus {
     overflow-x: none;
     -ms-overflow-style: none;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
 }
 
 .margin-right-sm {
