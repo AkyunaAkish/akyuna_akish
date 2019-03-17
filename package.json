@@ -7,7 +7,7 @@
     "start": "node ./server/init.js",
     "client": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --colors",
     "server": "./node_modules/.bin/nodemon ./server/init.js",
-    "build": "./node_modules/.bin/webpack -p",
+    "build-min": "./node_modules/.bin/webpack -p",
     "build-no-min": "./node_modules/.bin/webpack"
   },
   "keywords": [],
