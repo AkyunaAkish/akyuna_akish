@@ -23,7 +23,7 @@ class Hero extends PureComponent {
                 <div className='part' id='hero-part'>
                     <div className='octo'>
                         <div className='octo1'>
-                            <img src='/images/hooded_profile_image.jpg' width='320' height='316' />
+                            <img src='/images/akyuna.jpeg' width='320' height='316' />
                         </div>
                     </div>
 
