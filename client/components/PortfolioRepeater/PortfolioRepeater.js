@@ -12,37 +12,37 @@ class PortfolioRepeater extends PureComponent {
     renderPortfolio() {
         let portfolio = [
             {
-                title: 'Payment System',
-                tech: 'AngularJS, LESS, Jade, AngularStrap, WebpackJS, GulpJS, NodeJS, ExpressJS, Stripe, PostgreSQL, Heroku, SalesForce',
+                title: 'Kaiser Permanente Admin Managed Website(ABI U)',
+                tech: 'ReactJS, Redux, SCSS, MaterialUI, NodeJS, ExpressJS, Webpack, PostgreSQL, KnexJS, Cypress, Unix, Windows, Heroku',
                 live: '',
+                company: 'Betsol',
+                github: '',
+                img: '/images/abi_u.png'
+            },
+            {
+                title: 'Kaiser Permanente Automation Setup Tool(LeTo)',
+                tech: 'ReactJS, Redux, SCSS, MaterialUI, NodeJS, ExpressJS, Socket.io, Webpack, PostgreSQL, KnexJS, Docker, Unix, Linux',
+                live: '',
+                company: 'Betsol',
+                github: '',
+                img: '/images/portfolio/leto_dash.png'
+            },    
+            {
+                title: 'Kaiser Permanente Test Automation Tool(APDP)',
+                tech: 'ReactJS, Redux, SCSS, MaterialUI, NodeJS, ExpressJS, Socket.io, Webpack, PostgreSQL, KnexJS, Docker, Unix, Linux',
+                live: '',
+                company: 'Betsol',
+                github: '',
+                img: '/images/portfolio/apdp.png'
+            },    
+            {
+                title: 'Payment System',
+                tech: 'AngularJS, LESS, Jade, AngularStrap, WebpackJS, GulpJS, Webpack, NodeJS, ExpressJS, Stripe, PostgreSQL, Heroku, SalesForce',
+                live: 'https://tranzact.zayo.com/#!/',
                 company: 'Zayo Group',
                 github: '',
                 img: '/images/portfolio/payment_system.png'
-            },
-            {
-                title: 'Kaiser Peramente Document Management Web App',
-                tech: 'ReactJS, Redux, SCSS, Ant-Design, React-Bootstrap, NodeJS, ExpressJS, Webpack, PostgreSQL, KnexJS, AWS EC2',
-                live: '',
-                company: 'Betsol',
-                github: '',
-                img: '/images/portfolio/abi_u/frontPage.png'
-            },
-            {
-                title: 'Automation Configuration Interface Web App',
-                tech: 'ReactJS, Redux, SCSS, Material-UI, NodeJS, ExpressJS, Webpack, OracleDB, KnexJS, AWS EC2',
-                live: '',
-                company: 'Betsol',
-                github: '',
-                img: '/images/portfolio/apdp_web_app/frontPage.png'
-            },       
-            {
-                title: 'Crypto Exchange Pricing Stream',
-                tech: 'ReactJS, Redux, HighCharts, SCSS, Material-UI, NodeJS, Webpack, Coin Cap/Kraken/Poloniex APIs, MongoDB, Mongoose, ExpressJS, Socket.io',
-                live: 'https://cryptocrew.herokuapp.com',
-                company: 'Personal Project',
-                github: 'https://github.com/AkyunaAkish/crypto_crew',
-                img: '/images/portfolio/cryptoStream.png'
-            },
+            },   
             {
                 title: 'GitHub User Search Project',
                 tech: 'ReactJS, Redux, Redux-Observable, RxJS, SCSS, Material-UI, NodeJS, Webpack, GitHub API, GitHub Pages',
@@ -74,7 +74,7 @@ class PortfolioRepeater extends PureComponent {
                          <div className='portfolio-item-btn-container'>
                              <RaisedButton className='portfolio-item-btn'
                                            label={ item.live.length ? 'Live Site' : this.props.windowWidth < 390 ? 'Private' : 'Privately Hosted' }
-                                           disabled={ item.live.length ? false : true }
+                                           disabled={ item.live.length && item.live !== 'http://akyuna.com' ? false : true }
                                            href={ item.live }
                                            disabledBackgroundColor={ 'rgb(149,149,149)' }
                                            disabledLabelColor={ 'rgb(255,255,255)' }

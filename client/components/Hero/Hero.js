@@ -47,6 +47,13 @@ class Hero extends PureComponent {
                                     secondary={ true } 
                                     icon={ <i className='fa fa-linkedin-square'></i> } />
 
+                        <FlatButton href='https://www.medium.com/@AkyunaAkish'
+                                    target='_blank'
+                                    className='block'
+                                    label='Medium Articles'
+                                    secondary={ true } 
+                                    icon={ <i className='fa fa-medium'></i> } />
+
                         <FlatButton href='tel:7605856334'
                                     className='block'
                                     label='760-585-6334'
