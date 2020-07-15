@@ -21,7 +21,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "mailgun-js": "^0.22.0",
     "moment": "^2.20.1",
     "mongoose": "^4.13.7",
